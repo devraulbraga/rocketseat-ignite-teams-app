@@ -12,7 +12,7 @@ export default function App() {
   });
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar style="light"/>
+      <StatusBar style="dark"/>
       {fontsLoaded ? <Routes /> : <Loading />}
     </ThemeProvider>
   );
