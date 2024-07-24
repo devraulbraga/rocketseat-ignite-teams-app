@@ -6,8 +6,15 @@ import { ListEmpty } from "@components/listempty";
 import { Button } from "@components/button";
 import { useState } from "react";
 import { FlatList } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 export function Groups() {
   const [groups, setGroups] = useState<string[]>([]);
+
+  const navigation = useNavigation();
+
+  function handleNewGroup() {
+    navigation.navigate("new"); // navega para a tela de cadastro de turma
+  }
   return (
     <Container>
       <Header />
@@ -21,7 +28,7 @@ export function Groups() {
           <ListEmpty message="Que tal cadastrar a primeira turma?" />
         )}
       />
-      <Button title="Cadastrar Turma" />
+      <Button title="Cadastrar Turma" onPress={handleNewGroup} />
     </Container>
   );
 }
