@@ -11,19 +11,19 @@ import { ListEmpty } from "@components/listempty";
 import { Button } from "@components/button";
 import { useRoute } from "@react-navigation/native";
 
-type RouteParams = { group: string };
+type RouteParams = { group: string }; // Definindo a tipagem dos parâmetros da rota
 
 export function Players() {
   const [team, setTeam] = useState("Time A");
   const [players, setPlayers] = useState([]);
 
-  const route = useRoute(); 
-  const { group } = route.params as RouteParams;
+  const route = useRoute(); // Obtendo os parâmetros da rota
+  const { group } = route.params as RouteParams; // Desestruturando os parâmetros da rota
   return (
     <Container>
       <Header showBackButton />
       <HightLight
-        title={group}
+        title={group} // Título da turma
         subTitle="adicione a galera e separe os times"
       />
       <Form>

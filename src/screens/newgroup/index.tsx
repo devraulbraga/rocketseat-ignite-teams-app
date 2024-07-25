@@ -10,11 +10,11 @@ export function NewGroup() {
   const navigation = useNavigation();
 
   function handleCreateGroup() {
-    navigation.navigate("players", { group: groupName }); // navega para a tela de
+    navigation.navigate("players", { group: groupName }); // navega para a tela de jogadores
   }
   return (
     <Container>
-      <Header showBackButton />
+      <Header showBackButton /> 
       <Content>
         <Icon />
         <HightLight
