@@ -18,7 +18,7 @@ export function NewGroup() {
         Alert.alert("Aviso", "O nome da turma deve ter pelo menos 3 caracteres.");
         return;
       }
-      await groupCreate(group) 
+      await groupCreate(group)  //  chamada para a função que cria a turma no storage
       navigation.navigate("players", { group }); // navega para a tela de jogadores
     }catch(error){
       if(error instanceof AppError){

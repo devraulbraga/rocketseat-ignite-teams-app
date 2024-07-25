@@ -25,6 +25,9 @@ export function Groups() {
       console.log(error);
     }
   }
+  function handleOpenGroup(group: string) {
+    navigation.navigate("players", { group }); // navega para a tela de jogadores
+  }
   useFocusEffect(useCallback(() => {
     loadGroups();
   }, []));
@@ -35,7 +38,7 @@ export function Groups() {
       <FlatList
         data={groups} // dados que serão renderizados
         keyExtractor={(item) => item} // gera um id único para cada item
-        renderItem={({ item }) => <GroupCard title={item} />} // renderiza um card para cada item
+        renderItem={({ item }) => <GroupCard title={item} onPress={() => handleOpenGroup(item)}/>} // renderiza um card para cada item
         contentContainerStyle={groups.length === 0 && { flex: 1 }} // renderiza uma lista vazia caso não haja grupos
         ListEmptyComponent={() => ( // renderiza uma mensagem caso não haja grupos
           <ListEmpty message="Que tal cadastrar a primeira turma?" />

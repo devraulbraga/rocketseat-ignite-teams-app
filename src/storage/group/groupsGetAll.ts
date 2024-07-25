@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { GROUP_STORAGE_KEY } from "../storageConfig";
+import { GROUP_STORAGE_KEY } from "../storageConfig"; // Importa a constante de chave de armazenamento de grupos
 
 export async function groupsGetAll(){
     try {
