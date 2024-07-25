@@ -4,7 +4,7 @@ import {useFonts,Roboto_400Regular,Roboto_700Bold} from "@expo-google-fonts/robo
 import theme from "@theme/index";
 import { Loading } from "@components/loading";
 import { Routes } from "src/routes";
-
+import { KeyboardAvoidingView, Platform } from "react-native";
 export default function App() {
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,

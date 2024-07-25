@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useState, useCallback } from "react";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { FlatList } from "react-native";
 import { Container } from "./styles";
 import { Header } from "@components/header";
@@ -7,6 +7,7 @@ import { HightLight } from "@components/hightlight";
 import { GroupCard } from "@components/groupcard";
 import { ListEmpty } from "@components/listempty";
 import { Button } from "@components/button";
+import { groupsGetAll } from "@storage/group/groupsGetAll";
 
 export function Groups() {
   const [groups, setGroups] = useState<string[]>([]);
@@ -16,6 +17,17 @@ export function Groups() {
   function handleNewGroup() {
     navigation.navigate("new"); // navega para a tela de cadastro de turma
   }
+  async function loadGroups() {
+    try {
+      const data = await groupsGetAll(); // chama a função que retorna as turmas salvas no storage
+      setGroups(data); // seta os dados na variável groups
+    }catch(error){
+      console.log(error);
+    }
+  }
+  useFocusEffect(useCallback(() => {
+    loadGroups();
+  }, []));
   return (
     <Container>
       <Header />

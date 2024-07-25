@@ -11,7 +11,8 @@ type Props = TouchableOpacityProps & {
 
 export function GroupCard({title, ...rest}: Props){
     return (
-        <Container {...rest}> // rest passa todas as props para o TouchableOpacity
+        // rest passa todas as props para o TouchableOpacity
+        <Container {...rest}> 
             <Icon/>
             <Title>{title}</Title>
         </Container>
