@@ -16,10 +16,12 @@ import { playersGetByGroupAndTeam } from "@storage/player/playerGetByGroupAndTea
 import { PlayerStorageDTO } from "@storage/player/PlayerStorageDTO";
 import { playerRemoveByGroup } from "@storage/player/playerRemoveByGroup";
 import { groupRemoveByName } from "@storage/group/groupRemoveByName";
+import { Loading } from "@components/loading";
 
 type RouteParams = { group: string }; // Definindo a tipagem dos parâmetros da rota
 
 export function Players() {
+  const [isLoading, setIsLoading] = useState(true);
   const [newPlayerName, setNewPlayer] = useState("");
   const [team, setTeam] = useState("Time A");
   const [players, setPlayers] = useState<PlayerStorageDTO[]>([]);
@@ -54,8 +56,10 @@ export function Players() {
   }
   async function fetchPlayersByTeam() {
     try {
+      setIsLoading(true)
       const playersByTeam = await playersGetByGroupAndTeam(group, team);
       setPlayers(playersByTeam);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
       Alert.alert("Atenção", "Ocorreu um erro ao tentar carregar os jogadores.");
@@ -131,6 +135,7 @@ export function Players() {
         />
         <NumbersPlayers>{players.length}</NumbersPlayers>
       </HeaderList>
+      { isLoading ? <Loading /> :
       <FlatList
         data={players}
         keyExtractor={(item) => item.name}
@@ -146,6 +151,7 @@ export function Players() {
           <ListEmpty message="Não há pessoas nesse time." />
         )}
       />
+    }
       <Button title="Remover turma" buttonType="SECONDARY" onPress={handleGroupRemove}/>
     </Container>
   );

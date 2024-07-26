@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
-import { FlatList } from "react-native";
+import { Alert, FlatList } from "react-native";
 import { Container } from "./styles";
 import { Header } from "@components/header";
 import { HightLight } from "@components/hightlight";
@@ -23,6 +23,7 @@ export function Groups() {
       setGroups(data); // seta os dados na variável groups
     }catch(error){
       console.log(error);
+      Alert.alert("Atenção", "Ocorreu um erro ao tentar carregar");
     }
   }
   function handleOpenGroup(group: string) {
